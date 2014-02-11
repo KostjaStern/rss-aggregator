@@ -5,33 +5,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-//import javax.persistence.ManyToOne;
-//import javax.persistence.FetchType;
-//import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "rss_news")
 public class RssNew
 {
 	@Id
-    @Column(name = "id")
     @GeneratedValue
     private Integer id;
 
-	@Column(name = "feed_id")
-	private Integer feedId;
+//	@Column(name = "feed_id")
+//	private Integer feedId;
 	
-    @Column(name = "title")
+	@Column(name = "title")
     private String title;
 
-    @Column(name = "link")
+	@Column(name = "link")
     private String link;
 
-/*    
-    @ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne
     @JoinColumn(name="feed_id")
     private RssFeed rssFeed;
-*/    
+    
     
     public RssNew(){
     }
@@ -44,13 +42,13 @@ public class RssNew
     	return id;
     }
    
-    public void setFeedId(Integer feedId){
-    	this.feedId = feedId;
-    }
-    
-    public Integer getFeedId(){
-    	return feedId;
-    }
+//    public void setFeedId(Integer feedId){
+//    	this.feedId = feedId;
+//    }
+//    
+//    public Integer getFeedId(){
+//    	return feedId;
+//    }
     
     public void setTitle(String title){
     	this.title = title;
@@ -68,9 +66,13 @@ public class RssNew
     	return link;
     }
 
-/*    
-    public String getNewFeedName(){
-    	return rssFeed.getName();
+    
+    public void setRssFeed(RssFeed rssFeed){
+    	this.rssFeed = rssFeed;
     }
-*/    
+    
+    public RssFeed getRssFeed(){
+    	return rssFeed;
+    }
+    
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sternkn.testtasks.rss.domain.RssNew;
+import com.sternkn.testtasks.rss.domain.RssFeed;
 import com.sternkn.testtasks.rss.dao.RssNewDAOImpl;
 
 @Controller
@@ -19,19 +20,30 @@ public class RssController
 	{
         System.out.println("call homePage(...)");
         
+/*        
+        // add rss new 
+        RssFeed rssFeed = new RssFeed();
+        rssFeed.setId(2);
         
-//        RssNew rssNew = new RssNew();
-//        rssNew.setFeedId(1);
-//        rssNew.setTitle("test title");
-//        rssNew.setLink("http://habrahabr.ru/post/111102/");
+        RssNew rssNew = new RssNew();
+        rssNew.setRssFeed(rssFeed);
+        rssNew.setTitle("test title s");
+        rssNew.setLink("http://www.javaworld.com/article/2092353/core-java/httpclient-basic-authentication.html#tk.rss_corejava");
+        
+        RssNewDAOImpl rssNewDAOImpl = new RssNewDAOImpl();
+        rssNewDAOImpl.addRssNew(rssNew);
+*/
+        
+/*
+        // get list news 
         RssNewDAOImpl rssNewDAOImpl = new RssNewDAOImpl(); 
         List<RssNew> rssNews = rssNewDAOImpl.listRssNew();
         System.out.println("rssNews.size() = " + rssNews.size());
         for(RssNew rssNew: rssNews)
         {
-        	System.out.println("id = " + rssNew.getId() + " , title = " + rssNew.getTitle());
+        	System.out.println("id = " + rssNew.getId() + " , title = " + rssNew.getTitle() + " , feedName = " + rssNew.getRssFeed().getName());
         }
-        
+*/        
 		model.addAttribute("message", "Maven Web Project + Spring 3 MVC - welcome()");
  
 		//Spring uses InternalResourceViewResolver and return back index.jsp
