@@ -43,7 +43,8 @@ public class RssController
         {
         	System.out.println("id = " + rssNew.getId() + " , title = " + rssNew.getTitle() + " , feedName = " + rssNew.getRssFeed().getName());
         }
-*/        
+*/       
+        model.addAttribute("activeMenu", 1);
 		model.addAttribute("message", "Maven Web Project + Spring 3 MVC - welcome()");
  
 		//Spring uses InternalResourceViewResolver and return back index.jsp
@@ -55,8 +56,14 @@ public class RssController
 	public String newsPage(ModelMap model) 
 	{
         System.out.println("call newsPage(...)");
-		model.addAttribute("message", "... news");
- 
+		// model.addAttribute("message", "... news");
+        
+        RssNewDAOImpl rssNewDAOImpl = new RssNewDAOImpl(); 
+        List<RssNew>  rssNews = rssNewDAOImpl.listRssNew();
+        
+        model.addAttribute("activeMenu", 3);
+        model.addAttribute("rssNews", rssNews);
+        
 		//Spring uses InternalResourceViewResolver and return back index.jsp
 		return "news";
 	}

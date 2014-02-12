@@ -3,3 +3,89 @@ div.main-wrapp{
 	margin: 10px auto 0;
 	width: 1000px; 
 }
+
+/* main menu */
+div.main-manu ul.manu{
+	padding: 0 0 20px;
+}
+
+div.main-manu ul.manu li.menu-item{
+	display: inline-block;
+    padding: 5px 15px;
+    text-align: center;
+    width: 73px;
+}
+
+ul.manu li.menu-item + li.menu-item{
+	border-left: 2px solid #000000;
+}
+
+ul.manu li.menu-item a{
+	color: #000000;
+}
+
+ul.manu li.menu-item.active a{
+	color: #0000FF;
+	font-weight: bold;
+}
+
+
+div.main-wrapp h3{
+	font: bold 16px Arial;
+	padding: 5px 0 20px;
+}
+
+
+/* news table */
+table.news-data .rssnew{
+	width: 450px;
+} 
+
+table.news-data .rssfeed-name{
+    text-align: center;
+    width: 150px;	
+}
+
+table.news-data .rssnew-delete{
+	text-align: center;
+    width: 50px;
+}
+
+table.news-data th,
+table.news-data td{
+    border: 1px solid #000000;
+}
+
+table.news-data thead th{
+	background-color: #DDDDDD;
+    font: bold 14px Arial;
+    padding: 8px;
+}
+
+table.news-data tbody td{
+    padding: 7px 10px;
+}
+
+table.news-data tbody td.rssfeed-name{
+	font-weight: bold;
+}
+
+table.news-data tfoot td{
+    padding: 7px 10px;
+    text-align: center;
+}
+
+table.news-data tfoot td a.get-news{
+	margin-right: 20px;
+}
+
+.button{
+	background-color: #EEEEEE;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    color: #000000;
+    display: inline-block;
+    padding: 3px;
+    text-decoration: none;
+}
+

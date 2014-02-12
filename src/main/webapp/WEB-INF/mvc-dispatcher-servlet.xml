@@ -13,15 +13,18 @@
 	<context:annotation-config />
     <context:component-scan base-package="com.sternkn.testtasks.rss.dao" />
     <context:component-scan base-package="com.sternkn.testtasks.rss.controller" />
-    <import resource="db-config.xml" />
+    
+    <!--  
+        <import resource="db-config.xml" />
+        <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		    <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+	    </bean> 
+    -->
+    
     
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/pages/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
 	</bean>
  
     <mvc:resources mapping="/resources/**" location="/resources/" />
@@ -29,26 +32,3 @@
  
 </beans>
 
-<!-- 	 
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:jee="http://www.springframework.org/schema/jee" 
-	xmlns:lang="http://www.springframework.org/schema/lang"
-	xmlns:p="http://www.springframework.org/schema/p" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="
-	    http://www.springframework.org/schema/beans 
-	    http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/aop 
-        http://www.springframework.org/schema/aop/spring-aop.xsd
-        http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/jee 
-        http://www.springframework.org/schema/jee/spring-jee.xsd
-        http://www.springframework.org/schema/lang 
-        http://www.springframework.org/schema/lang/spring-lang.xsd
-        http://www.springframework.org/schema/tx 
-        http://www.springframework.org/schema/tx/spring-tx.xsd
-        http://www.springframework.org/schema/util 
-        http://www.springframework.org/schema/util/spring-util.xsd">
--->        
