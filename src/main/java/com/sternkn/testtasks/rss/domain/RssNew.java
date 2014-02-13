@@ -1,6 +1,5 @@
 package com.sternkn.testtasks.rss.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,13 +15,8 @@ public class RssNew
     @GeneratedValue
     private Integer id;
 
-//	@Column(name = "feed_id")
-//	private Integer feedId;
-	
-	@Column(name = "title")
     private String title;
 
-	@Column(name = "link")
     private String link;
 
     
@@ -42,14 +36,6 @@ public class RssNew
     	return id;
     }
    
-//    public void setFeedId(Integer feedId){
-//    	this.feedId = feedId;
-//    }
-//    
-//    public Integer getFeedId(){
-//    	return feedId;
-//    }
-    
     public void setTitle(String title){
     	this.title = title;
     }
@@ -75,4 +61,8 @@ public class RssNew
     	return rssFeed;
     }
     
+    @Override
+    public String toString(){
+    	return "RssNew[id = " + id + ", title = " + title + " , link = " + link + " , rssFeed = " + rssFeed + "]";
+    }
 }

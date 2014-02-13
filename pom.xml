@@ -8,15 +8,15 @@
 	<name>RssAggregator Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<spring.version>3.1.1.RELEASE</spring.version> <!-- 3.0.5.RELEASE -->
-		<hibernate.version>4.1.9.Final</hibernate.version> <!-- 3.6.10.Final -->
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<hibernate.version>4.1.9.Final</hibernate.version>
 		<junit.version>4.11</junit.version>
 		<jdk.version>1.6</jdk.version>
 	</properties>
 
 	<dependencies>
 
-		<!-- Spring 3 dependencies -->
+		<!-- Spring 3.1.1.RELEASE dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -58,22 +58,30 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-<!-- 
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.5.6-Final</version>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.1.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId>
-			<version>3.3.0.ga</version>
-		</dependency>
--->
+
+		<!-- javax.persistence.* -->
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<version>1.0.1.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
 		</dependency>
 
 		<dependency>

@@ -12,8 +12,8 @@
 	<div class="main-wrapp">
 	    <div class="main-manu">
 	        <ul class="manu">
-	            <li class="menu-item<c:if test="${activeMenu==1}"> active</c:if>"><a href="<c:url value="/" />">Feeds</a></li>
-                <li class="menu-item"><a href="<c:url value="/add-feed" />">Add feed</a></li>
+	            <li class="menu-item<c:if test="${activeMenu==1}"> active</c:if>"><a href="<c:url value="/feed/list" />">Feeds</a></li>
+                <li class="menu-item<c:if test="${activeMenu==2}"> active</c:if>"><a href="<c:url value="/feed/add" />">Add feed</a></li>
 	            <li class="menu-item<c:if test="${activeMenu==3}"> active</c:if>"><a href="<c:url value="/news" />">News</a></li>
 	        </ul>
 	    </div>

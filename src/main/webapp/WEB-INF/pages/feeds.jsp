@@ -2,6 +2,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:wrapper>
-	<h2>Hello World!</h2>
-	<h4>Message: ${message}</h4>
+	<h3>Feeds</h3>
+	<div id="feeds-list">
+	
+	</div>
 </t:wrapper>

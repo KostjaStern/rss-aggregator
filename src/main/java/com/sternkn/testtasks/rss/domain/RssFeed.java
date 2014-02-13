@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
 
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.URL;
+
 @Entity
 @Table(name = "rss_feeds")
 public class RssFeed
@@ -19,9 +22,12 @@ public class RssFeed
     @GeneratedValue
     private Integer id;
 
+	@Size(min=1, max=49)
     @Column(name = "name")
     private String name;
 
+	@URL
+	@Size(min=4, max=249) 
     @Column(name = "url")
     private String url;
 
@@ -62,5 +68,10 @@ public class RssFeed
     
     public Set<RssNew> getRssNews(){
     	return rssNews;
+    }
+    
+    @Override
+    public String toString(){
+    	return "RssFeed[id = " + id + ", name = " + name + " , url = " + url + "]";
     }
 }
