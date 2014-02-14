@@ -26,4 +26,31 @@ $(document).ready(function()
 		
 		return false;
 	});
+	
+	// delete feed
+	$("table.feeds-data a.rssfeed-delete").click(function()
+	{
+		var tdSelector = "table.feeds-data td." + $(this).data("class");
+		$(tdSelector).css("background-color", "#FF5500");
+		
+		// example: delFeedUrl = http://localhost:8080/RssAggregator/feed/delete/7
+        var delFeedUrl = document.location.protocol + "//" + document.location.host + $(this).attr("href"); 
+
+		$.ajax({
+		    url: delFeedUrl,
+			type: "POST",
+			dataType: "json",
+			success	: function(data)
+			{
+				if(data.code != 1){
+				    alert(data.message);
+				}
+				else {
+					$(tdSelector).remove();
+				}
+			}
+		});
+		
+		return false;
+	});
 });

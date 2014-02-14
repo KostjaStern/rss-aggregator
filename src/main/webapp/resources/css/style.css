@@ -51,18 +51,18 @@ table.news-data .rssnew-delete{
     width: 50px;
 }
 
-table.news-data th,
-table.news-data td{
+table.data-table th,
+table.data-table td{
     border: 1px solid #000000;
 }
 
-table.news-data thead th{
+table.data-table thead th{
 	background-color: #DDDDDD;
     font: bold 14px Arial;
     padding: 8px;
 }
 
-table.news-data tbody td{
+table.data-table tbody td{
     padding: 7px 10px;
 }
 
@@ -88,4 +88,35 @@ table.news-data tfoot td a.get-news{
     padding: 3px;
     text-decoration: none;
 }
+
+.clear{
+	clear: both;
+}
+
+/* add feed form */
+div#add-feed p.row{
+	padding: 8px 0;
+	width: 700px;
+}
+
+div#add-feed label.field-label{
+    display: inline-block;
+    width: 53px;
+}
+
+div#add-feed input[type="text"] {
+    width: 300px;
+}
+
+div#add-feed span.error {
+    color: #FF0000;
+    float: right;
+    width: 310px;
+}
+
+div#add-feed .message {
+    font: bold 14px Arial;
+    padding: 5px 10px 20px;
+}
+
 

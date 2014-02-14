@@ -22,12 +22,13 @@ public class RssNewController
 		// model.addAttribute("message", "... news");
         
         RssNewDAOImpl rssNewDAOImpl = new RssNewDAOImpl(); 
-        List<RssNew>  rssNews = rssNewDAOImpl.listRssNew();
+        List<RssNew>  rssNews = rssNewDAOImpl.listRssNews();
+        rssNewDAOImpl.close();
         
         model.addAttribute("activeMenu", 3);
         model.addAttribute("rssNews", rssNews);
         
-		//Spring uses InternalResourceViewResolver and return back index.jsp
+		// Spring uses InternalResourceViewResolver and return back news.jsp
 		return "news";
 	}
 }

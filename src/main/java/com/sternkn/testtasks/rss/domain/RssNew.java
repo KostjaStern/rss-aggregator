@@ -25,7 +25,12 @@ public class RssNew
     private RssFeed rssFeed;
     
     
-    public RssNew(){
+    public RssNew()
+    {
+    	id      = 0;
+    	title   = "";
+    	link    = "";
+    	rssFeed = null;
     }
     
     public void setId(Integer id){
@@ -59,6 +64,43 @@ public class RssNew
     
     public RssFeed getRssFeed(){
     	return rssFeed;
+    }
+    
+    
+    @Override
+    public boolean equals(Object otherObject)
+    {
+    	if(this == otherObject) return true;
+    	if(otherObject == null) return false;
+    	
+    	if(getClass() != otherObject.getClass()){
+    		return false;
+    	}
+    	
+    	RssNew other = (RssNew)otherObject;
+    	
+    	boolean isEqualFeed = false;
+    	if((rssFeed == null && other.getRssFeed() == null) || rssFeed.equals(other)){
+    		isEqualFeed = true;
+    	}
+    	
+    	return title.equals(other.getTitle()) &&
+    		   link.equals(other.getLink()) &&
+    		   isEqualFeed;	
+    }
+    
+    @Override
+    public int hashCode()
+    {
+    	int feedCode;
+    	if(rssFeed == null){
+    		feedCode = 0;
+    	}
+    	else {
+    		feedCode = rssFeed.hashCode(); 
+    	}
+    	
+    	return title.hashCode() + 7 * link.hashCode() + 11 * feedCode;
     }
     
     @Override

@@ -3,30 +3,22 @@ package com.sternkn.testtasks.rss.dao;
 import java.util.List;
 import java.util.LinkedList;
 
-import org.hibernate.SessionFactory;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+import com.sternkn.testtasks.rss.domain.RssFeed;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.transaction.annotation.Transactional;
 
-import org.springframework.stereotype.Repository;
-
-import com.sternkn.testtasks.rss.domain.RssNew;
-
-@Repository
-public class RssNewDAOImpl implements RssNewDAO 
+public class RssFeedDAOImpl implements RssFeedDAO 
 {
-	// @Autowired    TODO why @Autowired not works ?
-    private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
-	public RssNewDAOImpl()
+	public RssFeedDAOImpl()
 	{
 		try
 		{
@@ -40,9 +32,8 @@ public class RssNewDAOImpl implements RssNewDAO
 		}
 	}
 	
-
 	@Override
-	public void addRssNew(RssNew rssNew) 
+	public void addRssFeed(RssFeed rssFeed)
 	{
 		try
 		{
@@ -50,22 +41,20 @@ public class RssNewDAOImpl implements RssNewDAO
 		    Transaction tr = session.getTransaction();
 		    
 		    tr.begin();
-		    session.save(rssNew);
+		    session.save(rssFeed);
 		    tr.commit();
 		    
 		    session.close();
 		} 
 		catch (HibernateException e){
 			// TODO add to LOG
-		}
-    }
-
-	// @Transactional  TODO why @Transactional not works ? 
+		}		
+	}
+	
 	@Override
-    @SuppressWarnings("unchecked")
-    public List<RssNew> listRssNews() 
-    {
-		List<RssNew> rssNews = new LinkedList<RssNew>();
+	public List<RssFeed> listRssFeeds()
+	{
+		List<RssFeed> rssFeeds = new LinkedList<RssFeed>();
 		
 		try
 		{
@@ -73,7 +62,7 @@ public class RssNewDAOImpl implements RssNewDAO
 		    Transaction tr = session.getTransaction();
 		    
 		    tr.begin();
-		    rssNews = session.createQuery("from RssNew").list();
+		    rssFeeds = session.createQuery("from RssFeed").list();
 		    tr.commit();
 			
 		    session.close();
@@ -82,22 +71,21 @@ public class RssNewDAOImpl implements RssNewDAO
 			// TODO add to LOG
 		}
 		
-        return rssNews;
-    }
-
-	// @Transactional
+		return rssFeeds;
+	}
+	
 	@Override
-    public void removeRssNew(Integer id) 
-    {
+	public void removeRssFeed(Integer id)
+	{
 		try
 		{
 			Session session = sessionFactory.getCurrentSession();
 		    Transaction tr = session.getTransaction();
 		    
 		    tr.begin();
-		    RssNew rssNew = (RssNew)session.load(RssNew.class, id);
-	        if (null != rssNew) {
-	        	session.delete(rssNew);
+		    RssFeed rssFeed = (RssFeed)session.load(RssFeed.class, id);
+	        if (null != rssFeed) {
+	        	session.delete(rssFeed);
 	        }
 		    tr.commit();
 			
@@ -105,14 +93,15 @@ public class RssNewDAOImpl implements RssNewDAO
 		}
 		catch (HibernateException e){
 			// TODO add to LOG
-		}
-    }
+		}		
+	}
 	
 	@Override
 	public void close()
 	{
 		if(sessionFactory != null){
 		    sessionFactory.close();
-		}
+		}		
 	}
+	
 }

@@ -86,5 +86,8 @@
     <dependent-module archiveName="servlet-api-2.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar">
       <dependency-type>uses</dependency-type>
     </dependent-module>
+    <dependent-module archiveName="json-20131018.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/json/json/20131018/json-20131018.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
   </wb-module>
 </project-modules>

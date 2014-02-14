@@ -3,7 +3,6 @@ package com.sternkn.testtasks.rss.domain;
 import java.util.Set;
 import java.util.HashSet;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,24 +17,25 @@ import org.hibernate.validator.constraints.URL;
 public class RssFeed
 {
 	@Id
-    @Column(name = "id")
     @GeneratedValue
     private Integer id;
 
-	@Size(min=1, max=49)
-    @Column(name = "name")
+	@Size(min=1, max=50)
     private String name;
 
 	@URL
-	@Size(min=4, max=249) 
-    @Column(name = "url")
+	@Size(min=4, max=250) 
     private String url;
 
     
     @OneToMany(mappedBy="rssFeed")
     private Set<RssNew> rssNews = new HashSet<RssNew>();
     
-    public RssFeed(){
+    public RssFeed()
+    {
+    	id   = 0;
+    	name = "";
+    	url  = "";
     }
     
     public void setId(Integer id){
@@ -68,6 +68,27 @@ public class RssFeed
     
     public Set<RssNew> getRssNews(){
     	return rssNews;
+    }
+    
+    @Override
+    public boolean equals(Object otherObject)
+    {
+    	if(this == otherObject) return true;
+    	if(otherObject == null) return false;
+    	
+    	if(getClass() != otherObject.getClass()){
+    		return false;
+    	}
+    	
+    	RssFeed other = (RssFeed)otherObject;
+    	
+    	return name.equals(other.getName()) &&
+    		   url.equals(other.getUrl());	
+    }
+    
+    @Override
+    public int hashCode(){
+    	return name.hashCode() + 7 * url.hashCode();
     }
     
     @Override

@@ -8,7 +8,9 @@ public interface RssNewDAO
 {
 	void addRssNew(RssNew rssNew);
 
-    List<RssNew> listRssNew();
+    List<RssNew> listRssNews();
 
     void removeRssNew(Integer id);
+    
+    void close();
 }
