@@ -3,7 +3,6 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:wrapper>
-	<h3>News</h3>
 	<div id="news-list">
 	    <c:if test="${!empty rssNews}">
 		    <table class="data-table news-data">

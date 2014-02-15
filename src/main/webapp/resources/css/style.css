@@ -114,7 +114,7 @@ div#add-feed span.error {
     width: 310px;
 }
 
-div#add-feed .message {
+.message {
     font: bold 14px Arial;
     padding: 5px 10px 20px;
 }

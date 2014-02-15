@@ -3,14 +3,14 @@ package com.sternkn.testtasks.rss.parser;
 import java.io.IOException;
 
 /**
- *  Signals that an read rss exception has occurred. 
+ *  Signals that a rss reading exception has occurred. 
  */
 public class RssReadException extends IOException
 {
 	static final long serialVersionUID = 781837582814609L;
 	
 	/**
-     * Constructs an {@code RssReadException} with {@code null}
+     * Constructs a {@code RssReadException} with {@code null}
      * as its error detail message.
      */
     public RssReadException(){
@@ -18,7 +18,7 @@ public class RssReadException extends IOException
     }
     
     /**
-     * Constructs an {@code RssReadException} with the specified detail message.
+     * Constructs a {@code RssReadException} with the specified detail message.
      *
      * @param msg
      *        The detail message (which is saved for later retrieval

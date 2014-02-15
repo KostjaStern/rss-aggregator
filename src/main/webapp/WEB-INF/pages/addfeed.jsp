@@ -4,10 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <t:wrapper>
-	<h3>Add feed</h3>
 	<div id="add-feed">
 	    <c:url value="/feed/add" var="formLink" />
-        <div class="message">${message}</div>
 	    <form:form method="POST" action="${formLink}" modelAttribute="rssFeed">
 	        <p class="row">
 			    <label class="field-label" for="nameInput">Name: </label>

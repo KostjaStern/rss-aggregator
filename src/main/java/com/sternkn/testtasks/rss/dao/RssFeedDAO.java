@@ -1,15 +1,16 @@
 package com.sternkn.testtasks.rss.dao;
 
 import java.util.List;
+
 import com.sternkn.testtasks.rss.domain.RssFeed;
 
 public interface RssFeedDAO
 {
-	void addRssFeed(RssFeed rssFeed);
+	int addRssFeed(RssFeed rssFeed) throws DbException;
 
-    List<RssFeed> listRssFeeds();
+    List<RssFeed> listRssFeeds() throws DbException;
 
-    void removeRssFeed(Integer id);
+    void removeRssFeed(Integer id) throws DbException;
     
-    void close();
+    void close() throws DbException;
 }

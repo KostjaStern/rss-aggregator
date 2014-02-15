@@ -18,7 +18,7 @@ public class RssFeedDAOImpl implements RssFeedDAO
 {
 	private SessionFactory sessionFactory;
 	
-	public RssFeedDAOImpl()
+	public RssFeedDAOImpl() throws DbException
 	{
 		try
 		{
@@ -29,36 +29,43 @@ public class RssFeedDAOImpl implements RssFeedDAO
 		}
 		catch (HibernateException e){
 			// TODO add to LOG
+			throw new DbException(e.getMessage());
 		}
 	}
 	
 	@Override
-	public void addRssFeed(RssFeed rssFeed)
+	public int addRssFeed(RssFeed rssFeed) throws DbException
 	{
+		int feedID = 0;
 		try
 		{
-			Session session = sessionFactory.getCurrentSession();
+			Session session = sessionFactory.openSession();
 		    Transaction tr = session.getTransaction();
 		    
 		    tr.begin();
 		    session.save(rssFeed);
+		    session.flush();
+		    feedID = rssFeed.getId();
 		    tr.commit();
 		    
 		    session.close();
 		} 
 		catch (HibernateException e){
 			// TODO add to LOG
+			throw new DbException(e.getMessage());
 		}		
+		
+		return feedID;
 	}
 	
 	@Override
-	public List<RssFeed> listRssFeeds()
+	public List<RssFeed> listRssFeeds() throws DbException
 	{
 		List<RssFeed> rssFeeds = new LinkedList<RssFeed>();
 		
 		try
 		{
-			Session session = sessionFactory.getCurrentSession();
+			Session session = sessionFactory.openSession();
 		    Transaction tr = session.getTransaction();
 		    
 		    tr.begin();
@@ -69,17 +76,18 @@ public class RssFeedDAOImpl implements RssFeedDAO
 		}
 		catch (HibernateException e){
 			// TODO add to LOG
+			throw new DbException(e.getMessage());
 		}
 		
 		return rssFeeds;
 	}
 	
 	@Override
-	public void removeRssFeed(Integer id)
+	public void removeRssFeed(Integer id) throws DbException
 	{
 		try
 		{
-			Session session = sessionFactory.getCurrentSession();
+			Session session = sessionFactory.openSession();
 		    Transaction tr = session.getTransaction();
 		    
 		    tr.begin();
@@ -93,15 +101,23 @@ public class RssFeedDAOImpl implements RssFeedDAO
 		}
 		catch (HibernateException e){
 			// TODO add to LOG
+			throw new DbException(e.getMessage());
 		}		
 	}
 	
 	@Override
-	public void close()
+	public void close() throws DbException
 	{
-		if(sessionFactory != null){
-		    sessionFactory.close();
-		}		
+		try
+		{
+			if(sessionFactory != null){
+			    sessionFactory.close();
+			}
+		}
+		catch (HibernateException e){
+			// TODO add to LOG
+			throw new DbException(e.getMessage());
+		}
 	}
 	
 }

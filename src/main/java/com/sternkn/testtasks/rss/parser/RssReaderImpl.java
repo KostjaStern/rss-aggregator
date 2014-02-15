@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.LinkedList; 
 
 import com.sternkn.testtasks.rss.domain.RssNew;
+import com.sternkn.testtasks.rss.domain.RssFeed;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,12 +21,16 @@ import javax.xml.stream.events.XMLEvent;
 
 public class RssReaderImpl implements RssReader
 {
-    public RssReaderImpl(String url) throws RssReadException
+    public RssReaderImpl(RssFeed rssFeed) throws RssReadException
     {
+    	if(rssFeed == null) throw new IllegalArgumentException("rssFeed is null");
+    	
+    	feed = rssFeed;
+    	
     	try {
-	        this.url = new URL(url);
+	        url = new URL(feed.getUrl());
 	    } catch (MalformedURLException e) {
-	        throw new RssReadException("Error parsing url " + url);
+	        throw new RssReadException("Error parsing url " + feed.getUrl());
 	    }
     }
     
@@ -44,7 +49,7 @@ public class RssReaderImpl implements RssReader
 		    XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
 		    
 		    /**
-		     *  read the XML document
+		     *  read the RSS XML document
 		     * 
 		     *  RSS XML format example: 
 		     * 
@@ -92,7 +97,8 @@ public class RssReaderImpl implements RssReader
 		            	RssNew rssNew = new RssNew(); 
 		            	rssNew.setTitle(title);
 		            	rssNew.setLink(link);
-		                
+		            	rssNew.setRssFeed(feed);
+		            	
 		            	rssNews.add(rssNew);
 		                event = eventReader.nextEvent();
 		                continue;
@@ -120,6 +126,7 @@ public class RssReaderImpl implements RssReader
         return result;
     }
     
+    private final RssFeed feed;
     private final URL url;
     private final String TITLE = "title";
     private final String LINK  = "link";
