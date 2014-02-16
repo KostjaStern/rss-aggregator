@@ -20,6 +20,8 @@ that allowed saved rss feeds and get from this feeds news (now only news title, 
    * run maven command 
 ```
    mvn package
+```
+
 
     from folder where you unpacked archive
 	
