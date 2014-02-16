@@ -17,13 +17,11 @@ that allowed saved rss feeds and get from this feeds news (now only news title, 
    * create database **rssagregator**
    * execute sql from file **src/main/sql/schema.sql**
    * edit database connect settings in file **src/main/resources/hibernate.cfg.xml**
-   * run maven command 
-```
+   * run maven command from folder where you unpacked archive
+
+```bash
    mvn package
 ```
-
-
-    from folder where you unpacked archive
 	
    * copy RssAggregator.war file from **target** folder (it maven created) to you **webapps** folder in Tomcat installation folder
    * open in browser url [http://localhost:8080/RssAggregator](http://localhost:8080/RssAggregator)
