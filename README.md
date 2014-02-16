@@ -20,7 +20,7 @@ that allowed saved rss feeds and get from this feeds news (now only news title, 
    * run maven command 
 ```
    mvn package
-```   
+
     from folder where you unpacked archive
 	
    * copy RssAggregator.war file from **target** folder (it maven created) to you **webapps** folder in Tomcat installation folder
@@ -29,9 +29,11 @@ that allowed saved rss feeds and get from this feeds news (now only news title, 
 ### Application features
    * using annotations for modeling relationship *one to many*
    * using custom annotation for validation rss url
-   * using Ajax for deleting and updating rss news
+   * using Ajax for deleting and updating rss news list
    
    
 ![Feeds list page](/img/feeds-page.png)
+
 ![Add new feed page](/img/add-feed-page.png)
+
 ![News list page](/img/news-page.png)
