@@ -120,3 +120,12 @@ div#add-feed span.error {
 }
 
 
+/* ajax loader image */
+div.ajax-loader {
+    height: 32px;
+    left: 50%;
+    margin: -16px 0 0 -16px;
+    position: fixed;
+    top: 50%;
+    width: 32px;
+}

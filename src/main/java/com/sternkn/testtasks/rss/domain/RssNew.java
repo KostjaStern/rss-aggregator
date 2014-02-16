@@ -80,7 +80,7 @@ public class RssNew
     	RssNew other = (RssNew)otherObject;
     	
     	boolean isEqualFeed = false;
-    	if((rssFeed == null && other.getRssFeed() == null) || rssFeed.equals(other)){
+    	if((rssFeed == null && other.getRssFeed() == null) || rssFeed.equals(other.getRssFeed())){
     		isEqualFeed = true;
     	}
     	

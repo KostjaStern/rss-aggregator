@@ -2,15 +2,48 @@
 
 $(document).ready(function()
 {
+	function addAjaxLoader()
+	{
+		// http://localhost:8080/RssAggregator/resources/img/ajax-loader.gif
+		var imgLink = document.location.protocol + "//" + document.location.host + "/RssAggregator/resources/img/ajax-loader.gif"; 
+		var html = "<div class='ajax-loader'>" +
+		           "<img class='loader-img' src='" + imgLink + "'/>" +
+		           "</div>";
+		
+		$("body").append(html);
+	}
+	
+	function removeAjaxLoader()
+	{
+		$("div.ajax-loader").remove();
+	}
+	
 	// delete rss news
 	$(document).on("click", "table.news-data a.rssnew-delete", function() {
 		var tdSelector = "table.news-data td." + $(this).data("class");
 		$(tdSelector).css("background-color", "#FF5500");
+		addAjaxLoader();
+		
 		
 		var delNewsUrl = document.location.protocol + "//" + document.location.host + $(this).attr("href");
 		console.info("delNewsUrl = " + delNewsUrl);
 		
-		// $("table.news-data td." + $(this).data("class")).remove();
+		$.ajax({
+		    url: delNewsUrl,
+			type: "POST",
+			dataType: "json",
+			success	: function(data)
+			{
+				removeAjaxLoader();
+				if(data.code == 1){
+					$(tdSelector).remove();
+				} 
+				else {
+					$(tdSelector).css("background-color", "#FFFFFF");
+					alert(data.message);
+				}
+			}
+		});
 		
 		return false;
 	});
@@ -20,7 +53,8 @@ $(document).ready(function()
 	// delete all news
 	$("table.news-data a.delete-all").click(function(){
 		var delAllNewsUrl = document.location.protocol + "//" + document.location.host + $(this).attr("href");
-		console.info("delAllNewsUrl = " + delAllNewsUrl);
+		// console.info("delAllNewsUrl = " + delAllNewsUrl);
+		addAjaxLoader();
 		
 		$.ajax({
 		    url: delAllNewsUrl,
@@ -28,6 +62,7 @@ $(document).ready(function()
 			dataType: "json",
 			success	: function(data)
 			{
+				removeAjaxLoader();
 				if(data.code == 1){
 					$("table.news-data tbody tr").remove();
 				}
@@ -42,7 +77,8 @@ $(document).ready(function()
 	// get news
 	$("table.news-data a.get-news").click(function(){
 		var getNewsUrl = document.location.protocol + "//" + document.location.host + $(this).attr("href");
-		console.info("getNewsUrl = " + getNewsUrl);
+		// console.info("getNewsUrl = " + getNewsUrl);
+		addAjaxLoader();
 		
 		$.ajax({
 		    url: getNewsUrl,
@@ -50,8 +86,7 @@ $(document).ready(function()
 			dataType: "json",
 			success	: function(data)
 			{
-				console.info("data.code = " + data.code);
-				console.info("data.message = " + data.message);
+				removeAjaxLoader();
 				
 				if(data.code == 1)
 				{
@@ -65,19 +100,11 @@ $(document).ready(function()
 						        "<td class='rssnew-delete row-" + data.news[k].newId + "'>" +
 						        "<a class='rssnew-delete button' href='/RssAggregator/news/delete/" + data.news[k].newId + 
 						        "' data-class='row-" + data.news[k].newId + "'>Delete</a></td></tr>";
-					   /*	
-						console.info("data.news[" + k + "].newId = " + data.news[k].newId);
-						console.info("data.news[" + k + "].newTitle = " + data.news[k].newTitle);
-						console.info("data.news[" + k + "].newLink = " + data.news[k].newLink);
-						console.info("data.news[" + k + "].newFeedName = " + data.news[k].newFeedName);
-					   */
 					}
 					$("table.news-data tbody").html(html);
 				}
-				else
-				{
-					$("div.message").html(data.message);
-				}
+
+				$("div.message").html(data.message);
 			}
 		});
 		
@@ -92,13 +119,16 @@ $(document).ready(function()
 		
 		// example: delFeedUrl = http://localhost:8080/RssAggregator/feed/delete/7
         var delFeedUrl = document.location.protocol + "//" + document.location.host + $(this).attr("href"); 
-
+        addAjaxLoader();
+        
 		$.ajax({
 		    url: delFeedUrl,
 			type: "POST",
 			dataType: "json",
 			success	: function(data)
 			{
+				removeAjaxLoader();
+				
 				if(data.code != 1){
 				    alert(data.message);
 				    $(tdSelector).css("background-color", "#FFFFFF");

@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -226,4 +226,37 @@ public class RssNewController
 		
 		return json.toString();
 	}
+	
+	
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST, produces="application/json; charset=utf-8")
+	@ResponseBody
+    public String deleteNews(@PathVariable Integer id, ModelMap model)
+    {
+		System.out.println("id = " + id);
+		
+		RssNewDAO newDAO = null;
+		int code = 1;
+		String message = "ok";
+		try
+		{
+			try
+			{
+				newDAO = new RssNewDAOImpl(); 
+				newDAO.removeRssNew(id);
+			}
+			finally
+			{
+				newDAO.close();
+			}
+		}
+		catch (DbException e){
+			code = 0;
+			message = e.getMessage();
+		}
+		
+		JSONObject json = new JSONObject();
+		json.put("code", code);
+		json.put("message", message);
+    	return json.toString();
+    }
 }

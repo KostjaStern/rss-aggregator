@@ -73,20 +73,34 @@ public class RssReaderImpl implements RssReader
 		     *         </channel>
 		     *     </rss>      
 		     */
+		    
+		    int elementCounter           = 0;
+		    
 		    while (eventReader.hasNext()) 
 		    {
 		        XMLEvent event = eventReader.nextEvent();
 		        
 		        if (event.isStartElement()) 
 		        {
+		        	elementCounter++;
 		            String localPart = event.asStartElement().getName().getLocalPart();
 		            
+		            System.out.println("localPart = " + localPart);
+
+		            if(elementCounter == 1 && !localPart.equals(RSS)){
+		            	throw new RssReadException("Invalid format RSS XML, the first element must be <rss>");
+		            }
+		            
+		            if(elementCounter == 2 && !localPart.equals(CHANNEL)){
+		            	throw new RssReadException("Invalid format RSS XML, the second element must be <channel>");
+		            }
+		            
 		            if(localPart.equals(TITLE)){
-		          	    title = getCharacterData(event, eventReader);
+		          	    title = getElementContent(event, eventReader);
 		            }
 		            	  
 		            if(localPart.equals(LINK)){
-		                link = getCharacterData(event, eventReader);
+		                link = getElementContent(event, eventReader);
 		            }
 		              
 		        } 
@@ -116,7 +130,7 @@ public class RssReaderImpl implements RssReader
     	return rssNews;
     }
     
-    private String getCharacterData(XMLEvent event, XMLEventReader eventReader) throws XMLStreamException 
+    private String getElementContent(XMLEvent event, XMLEventReader eventReader) throws XMLStreamException 
 	{
         String result = "";
         event = eventReader.nextEvent();
@@ -128,7 +142,9 @@ public class RssReaderImpl implements RssReader
     
     private final RssFeed feed;
     private final URL url;
-    private final String TITLE = "title";
-    private final String LINK  = "link";
-    private final String ITEM  = "item";
+    private final String TITLE   = "title";
+    private final String LINK    = "link";
+    private final String ITEM    = "item";
+    private final String RSS     = "rss";
+    private final String CHANNEL = "channel";
 }

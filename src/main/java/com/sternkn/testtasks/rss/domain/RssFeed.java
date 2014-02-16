@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.URL;
+// import org.hibernate.validator.constraints.URL;
+import com.sternkn.testtasks.rss.parser.RssUrl;
 
 @Entity
 @Table(name = "rss_feeds")
@@ -23,12 +25,12 @@ public class RssFeed
 	@Size(min=1, max=50)
     private String name;
 
-	@URL
-	@Size(min=4, max=250) 
+	@RssUrl
+	@Size(max=250) 
     private String url;
 
     
-    @OneToMany(mappedBy="rssFeed")
+    @OneToMany(mappedBy="rssFeed", cascade=CascadeType.ALL)
     private Set<RssNew> rssNews = new HashSet<RssNew>();
     
     public RssFeed()

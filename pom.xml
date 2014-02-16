@@ -62,7 +62,8 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.0.1.Final</version>
+			<version>4.2.0.Final</version> 
+			<!-- 5.0.1.Final => http://stackoverflow.com/questions/16989158/getting-error-java-lang-noclassdeffounderror-resourcebundlelocator -->
 		</dependency>
 
 		<!-- javax.persistence.* -->
@@ -124,12 +125,15 @@
 					<webResources>
 						<resource>
 							<!-- this is relative to the pom.xml directory -->
-							<directory>src/main/webapp/css</directory>
-							<directory>src/main/webapp/js</directory>
+							<directory>src/main/webapp/resources/css</directory>
+							<directory>src/main/webapp/resources/js</directory>
+							<directory>src/main/webapp/resources/img</directory>
 							<includes>
 								<include>**/*.css</include>
 								<include>**/*.js</include>
 								<include>**/*.jpg</include>
+								<include>**/*.png</include>
+								<include>**/*.gif</include>
 							</includes>
 						</resource>
 					</webResources>
