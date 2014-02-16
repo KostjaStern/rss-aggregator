@@ -19,11 +19,3 @@ CREATE TABLE rss_news (
 	PRIMARY KEY (id)
 );
 
-
-/*
-
-INSERT INTO rss_feeds (name, url) VALUES
-    ('habrahabr', 'http://habrahabr.ru/rss/feed/posts/2dad45b1cde9c116b15bda3e488350f6'),
-    ('core-java', 'http://www.javaworld.com/category/core-java/index.rss');
-
-*/

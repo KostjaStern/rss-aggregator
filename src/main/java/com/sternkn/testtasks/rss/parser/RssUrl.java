@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-
+ 
 
 @Documented
 @Constraint(validatedBy = RssUrlValidator.class)
